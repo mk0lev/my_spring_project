@@ -49,4 +49,22 @@ public class Main {
 
     }
 
+
+    record CustomerUpdateRequest(
+            String name,
+            String email,
+            Integer age) {
+
+    }
+    @PutMapping("{customerId}")
+    public void updateCustomer(
+            @PathVariable("customerId") Integer id,
+            @RequestBody CustomerUpdateRequest updateRequest){
+
+        Customer customerToUpdate = customerRepository.getOne(id);
+        customerToUpdate.setEmail(updateRequest.email());
+        customerToUpdate.setName(updateRequest.name());
+        customerToUpdate.setAge(updateRequest.age());
+        customerRepository.save(customerToUpdate);
+    }
 }
