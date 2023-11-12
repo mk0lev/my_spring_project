@@ -43,7 +43,7 @@ public class Main {
 
     @DeleteMapping("{customerId}")
     public void deleteCustomer(@PathVariable("customerId") Integer id) {
-        //No business logic at this point
+        //No business logic at this point, only deleting
 
         customerRepository.deleteById(id);
 
